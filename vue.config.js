@@ -12,8 +12,10 @@
  * @license AGPL-3.0-or-later <https://www.gnu.org/licenses/agpl-3.0.html>
  */
 
+/* Configuración para desarrollo local
 const fs = require('fs');
 const { defineConfig } = require('@vue/cli-service');
+
 
 // Carga las variables de entorno desde el archivo .env
 require('dotenv').config();
@@ -27,3 +29,13 @@ module.exports = defineConfig({
     }
   }
 });
+ */
+
+// Configuración para despliegue
+const { defineConfig } = require('@vue/cli-service');
+
+module.exports = defineConfig({
+  transpileDependencies: true
+});
+
+
