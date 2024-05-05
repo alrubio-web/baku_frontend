@@ -12,8 +12,9 @@
  * @license AGPL-3.0-or-later <https://www.gnu.org/licenses/agpl-3.0.html>
  */
 
-/* Configuración para desarrollo local
+
 const fs = require('fs');
+/* Configuración para desarrollo local
 const { defineConfig } = require('@vue/cli-service');
 
 
@@ -35,7 +36,17 @@ module.exports = defineConfig({
 const { defineConfig } = require('@vue/cli-service');
 
 module.exports = defineConfig({
-  transpileDependencies: true
+  transpileDependencies: true,
+  devServer: {
+    allowedHosts: [
+      '.herokuapp.com', // Permite todos los subdominios de herokuapp.com
+      'baku-rental-manager-frontend-fd6687d31d88.herokuapp.com' // Permite el host específico de tu app
+    ],
+    https: process.env.NODE_ENV === 'development' ? {
+      key: fs.readFileSync(process.env.CERT_KEY_FILE),
+      cert: fs.readFileSync(process.env.CERT_FILE),
+    } : undefined
+  }
 });
 
 
