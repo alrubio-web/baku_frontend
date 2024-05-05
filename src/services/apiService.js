@@ -15,7 +15,7 @@
 import axios from 'axios';
 
 const apiClient = axios.create({
-	baseURL: 'https://baku-rental-manager-backend-7b5c1c23f750.herokuapp.com',
+	baseURL: 'https://baku-rental-manager-backend-7b5c1c23f750.herokuapp.com/api',
 	withCredentials: true,
 	headers: {
 		'Content-Type': 'application/json'
