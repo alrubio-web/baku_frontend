@@ -35,7 +35,13 @@ module.exports = defineConfig({
 const { defineConfig } = require('@vue/cli-service');
 
 module.exports = defineConfig({
-  transpileDependencies: true
+  transpileDependencies: true,
+  devServer: {
+    allowedHosts: [
+      '.herokuapp.com', // Permite todos los subdominios de herokuapp.com
+      'baku-rental-manager-frontend-fd6687d31d88.herokuapp.com' // Permite el host específico de tu app
+    ]
+  }
 });
 
 
