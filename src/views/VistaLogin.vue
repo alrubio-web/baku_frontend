@@ -35,7 +35,7 @@
 export default {
   methods: {
     loginConGoogle() {
-      const authUrl = 'https://baku-rental-manager-backend-7b5c1c23f750.herokuapp.com/api/authGoogle/google';
+      const authUrl = 'https://api.bakurentalmanager.site/api/authGoogle/google';
       window.location.href = authUrl;
     }
   }
