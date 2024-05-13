@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-row justify = "center">
-      <v-dialog v-model = "localDialog">
+      <v-dialog v-model = "localDialog" @click:outside="cerrarDialogo">
         <v-card>
           <v-card-title>
             <span v-if = "localItem.id===0" class = "text-h5">Nuevo Movimiento Ad Hoc</span>

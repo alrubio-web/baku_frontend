@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-row justify = "center">
-      <v-dialog v-model = "localDialog">
+      <v-dialog v-model = "localDialog" @click:outside="cerrarDialogo">
         <v-card>
           <v-card-title>
             <span class = "text-h5">Gestión de Propiedad</span>
