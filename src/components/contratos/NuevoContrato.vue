@@ -34,6 +34,7 @@
                   <v-col cols="12" sm="6" md="4">
                     <v-select
                         v-model="nombreInmuebleSeleccionado"
+                        :disabled="localItem.id > 0"
                         :rules = "reglasRequerido"
                         :items="filtredInmuebles.map(inm => ({
                                     title: inm.nombre,
@@ -49,6 +50,7 @@
                   </v-col>
                   <v-col cols="12" sm="6" md="4">
                     <v-select
+                        :disabled="localItem.id > 0"
                         :rules = "reglasRequerido"
                         v-model="nombreArrendadorSeleccionado"
                         :items="filtredArrendadores.map(cont => ({
@@ -66,6 +68,7 @@
                   <v-col cols="12" sm="6" md="4">
                     <v-select
                         label="Inquilino (seleccionar)"
+                        :disabled="localItem.id > 0"
                         :rules = "reglasRequerido"
                         v-model="nombreInquilinoSeleccionado"
                         :items="contactos.map(cont => ({
@@ -87,6 +90,7 @@
                   >
                     <v-text-field
                         v-model = "localItem.fecha_inicio"
+                        :disabled="localItem.id > 0"
                         :rules = "reglasRequerido"
                         type = "date"
                     >
@@ -102,6 +106,7 @@
                   >
                     <v-text-field
                         v-model = "localItem.fecha_fin"
+                        :min="localItem.id > 0 ? new Date().toISOString().substring(0, 10) : null"
                         :rules = "reglasRequerido"
                         type = "date"
                     >
@@ -142,6 +147,7 @@
                   >
                     <v-text-field
                         :rules = "reglasRequerido"
+                        :disabled="localItem.id > 0"
                         v-model = "localItem.renta"
                         type="number"
                         step="0.01"
@@ -336,7 +342,7 @@ export default {
       const inquilino = this.contactos.find(cont => cont.nombre_completo === newValue);
       this.localItem.inquilino = inquilino ? inquilino.id : null;
     },
-     estado(newValue) {
+    estado(newValue) {
       this.localItem.estado = newValue;
     },
     sujeto_a_IRPF(newValue) {
