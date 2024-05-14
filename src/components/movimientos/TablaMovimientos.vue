@@ -20,6 +20,10 @@
         <v-btn v-if="esAdmin" color = "primary" dark class = "mb-2" @click = "nuevoItem">
           Nuevo
         </v-btn>
+        <v-spacer></v-spacer>
+        <v-btn v-if="esAdmin" color = "green" dark class = "mb-2" @click = "revisarMovPeriodicos">
+          Revisar y Generar
+        </v-btn>
       </v-card-title>
       <!-- Tabla HTML estándar -->
       <div class = "contenedor-tabla">
@@ -171,6 +175,27 @@ export default {
           })
           .catch(() => {
           });
+    }, async revisarMovPeriodicos() {
+      // Activar cursor de espera
+      this.toggleCursorEspera(true);
+      // Mostrar notificación de operación en curso
+      alertify.notify('Revisando movimientos periódicos. Por favor espera...', 'message', 3);
+      try {
+        const response = await this.revisarMovimientos();
+        if (response && response.data.status === 200) {
+          // Mostrar éxito y configurar para desaparecer después de 5 segundos
+          alertify.success(response.data.body, 5);
+        } else {
+          // Mostrar error y configurar para desaparecer después de 5 segundos
+          alertify.error('Error al revisar movimientos.', 5);
+        }
+      } catch (error) {
+        console.error('Error en la operación.', error);
+        alertify.error('Error en la operación.', 5); // 5 segundos
+      } finally {
+        // Desactivar cursor de espera
+        this.toggleCursorEspera(false);
+      }
     }, sortBy(column) {
       if (this.sortColumn === column) {
         this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc';

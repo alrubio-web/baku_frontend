@@ -141,7 +141,9 @@ export default {
 	async imprimirMovimiento(id) {
 		return apiClient.get(`/movimientos/print/${id}`);
 	},
-
+	async revisarMovimientos() {
+		return apiClient.get(`/cron`);
+	},
 	async getAbonos() {
 		return apiClient.get('/abonos/vista');
 	},

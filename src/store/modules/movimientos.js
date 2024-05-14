@@ -98,6 +98,11 @@ const actions = {
 		dispatch('fetchMovimientos');
 		return response;
 	},
+	async revisarMovimientos({ dispatch }) {
+		const response = await apiService.revisarMovimientos();
+		dispatch('fetchMovimientos');
+		return response;
+	},
 };
 
 
