@@ -181,7 +181,7 @@ export default {
       // Mostrar notificación de operación en curso
       alertify.notify('Revisando movimientos periódicos. Por favor espera...', 'message', 3);
       try {
-        const response = await this.revisarMovimientos();
+        const response = await this.revisarMovimientos;
         if (response && response.data.status === 200) {
           // Mostrar éxito y configurar para desaparecer después de 5 segundos
           alertify.success(response.data.body, 5);
