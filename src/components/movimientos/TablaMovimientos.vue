@@ -135,7 +135,8 @@ export default {
       fetchMovimientos: 'fetchMovimientos',
       eliminarMovimiento: 'eliminarMovimiento',
       mailMovimiento: 'mailMovimiento',
-      imprimirMovimiento: 'imprimirMovimiento'
+      imprimirMovimiento: 'imprimirMovimiento',
+      revisarMovimientos: 'revisarMovimientos'
     }), formatCurrency(value) {
       return formatCurrency(value);
     }, displayValue(item, header) {
