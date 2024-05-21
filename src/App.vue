@@ -57,6 +57,7 @@ export default {
         { nombre: 'Contratos', ruta: '/contratos' },
         { nombre: 'Rentas', ruta: '/rentas' },
         { nombre: 'Movimientos', ruta: '/movimientos' },
+        { nombre: 'Abonos', ruta: '/abonos' },
         { nombre: 'Mapa', ruta: '/mapa' },
         { nombre: 'Documentación', ruta: '/docu' },
       ],
