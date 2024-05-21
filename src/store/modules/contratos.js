@@ -148,7 +148,7 @@ const actions = {
 	},
 	async agregarRenta({ dispatch }, renta) {
 		alertify.confirm(
-			'Estás a punto de editar o crear una renta, ¿deseas continuar?',
+			'Estás a punto de editar una renta, ¿deseas continuar?',
 			async () => {
 				try {
 					const response = await apiService.postRenta(renta);
