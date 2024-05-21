@@ -21,6 +21,11 @@ import 'alertifyjs/build/css/alertify.css'; // Importa el CSS básico de Alertif
 import 'alertifyjs/build/css/themes/default.css'; // Importa el tema por defecto
 import '@mdi/font/css/materialdesignicons.css'
 
+import alertify from 'alertifyjs';
+
+// Configuración global de Alertify
+alertify.defaults.glossary.title = 'Aviso: '; // Título de cuadros de diálogo
+
 //Vuetify
 import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
