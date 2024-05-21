@@ -153,6 +153,26 @@ footer {
     font-weight: bold;
 }
 
+/* Leyenda Mapa */
+.leyenda {
+    margin-top: 20px;
+}
+
+.leyenda ul {
+    list-style: none;
+    padding: 0;
+}
+
+.leyenda li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.leyenda img {
+    margin-right: 10px;
+}
+
 /* Media Queries */
 
 @media (max-width: 960px) {

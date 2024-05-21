@@ -92,15 +92,29 @@ export default {
       this.cargarDatos();
     },
     async loadMarkers() {
+      const icons = {
+        alquilado: 'http://maps.google.com/mapfiles/ms/icons/blue.png',
+        disponible: 'http://maps.google.com/mapfiles/ms/icons/green.png',
+        saldoNegativo: 'http://maps.google.com/mapfiles/ms/icons/red.png',
+      };
+
       this.inmueblesContratos.forEach(inmueble => {
         if (inmueble.geolocalizacion_inmueble) {
           const [lat, lng] = inmueble.geolocalizacion_inmueble.split(',').map(Number);
           const position = new google.maps.LatLng(lat, lng);
 
-          // Crear un marcador estándar
+          let icon;
+          if (inmueble.estado_inmueble === 'alquilado') {
+            icon = inmueble.saldo < 0 ? icons.saldoNegativo : icons.alquilado;
+          } else {
+            icon = icons.disponible;
+          }
+
+          // Crear un marcador
           const marker = new google.maps.Marker({
             map: this.googleMap,
             position: position,
+            icon: icon,
             title: "Inmueble: " + inmueble.nombre_inmueble
           });
 

@@ -1,6 +1,14 @@
 <template>
   <v-container>
-      <mapa :titulo="titulo" :items="inmueblesContratos"/>
+    <mapa :titulo="titulo" :items="inmueblesContratos"/>
+    <div class="leyenda">
+      <h4>Leyenda</h4>
+      <ul>
+        <li><img src="http://maps.google.com/mapfiles/ms/icons/red-dot.png" alt="Saldo Negativo"> Saldo negativo de contrato</li>
+        <li><img src="http://maps.google.com/mapfiles/ms/icons/green-dot.png" alt="Disponible"> Inmueble disponible</li>
+        <li><img src="http://maps.google.com/mapfiles/ms/icons/blue-dot.png" alt="Alquilado con saldo positivo"> Inmueble alquilado con saldo positivo</li>
+      </ul>
+    </div>
   </v-container>
 </template>
 
@@ -50,3 +58,7 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+@import "@/assets/styles/globalStyles.css";
+</style>
