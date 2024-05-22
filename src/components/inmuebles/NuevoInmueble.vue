@@ -76,10 +76,12 @@
                       md = "4"
                   >
                     <v-text-field
-                        label = "Geolocalizacion"
                         v-model = "localItem.geolocalizacion"
+                        :rules = "reglasRequerido"
                         type="text"
-                    ></v-text-field>
+                    ><template v-slot:label>
+                      <span>Geolocalización <span class = "asterisco">*</span></span>
+                    </template></v-text-field>
                   </v-col>
                   <v-col
                       cols = "12"
@@ -301,6 +303,7 @@ export default {
       return [
         ...this.reglasRequerido.map(rule => rule(this.localItem.nombre)),
         ...this.reglasRequerido.map(rule => rule(this.localItem.direccion)),
+        ...this.reglasRequerido.map(rule => rule(this.localItem.geolocalizacion)),
         ...this.reglasRequerido.map(rule => rule(this.localItem.fecha_adquisicion)),
         ...this.reglasRequerido.map(rule => rule(this.localItem.precio_escriturado_transmision)),
         ...this.reglasRequerido.map(rule => rule(this.localItem.valor_catastral_suelo)),
