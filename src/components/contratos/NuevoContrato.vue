@@ -159,14 +159,11 @@
                   </v-col>
                   <v-col cols="12" sm="6" md="4" v-if="localItem.id > 0">
                     <v-radio-group
+                        label = "Estado del Contrato"
                         v-model="estado"
-                        :rules="reglasRequerido"
                     >
                       <v-radio :label="'Activo'" :value="true"></v-radio>
                       <v-radio :label="'Anulado'" :value="false"></v-radio>
-                      <template v-slot:label>
-                        <span>Estado del Contrato <span class = "asterisco">*</span></span>
-                      </template>
                     </v-radio-group>
                   </v-col>
                   <v-col cols="12" sm="6" md="4">
@@ -280,7 +277,6 @@ export default {
         ...this.reglasRequerido.map(rule => rule(this.localItem.inquilino)),
         ...this.reglasRequerido.map(rule => rule(this.localItem.fecha_inicio)),
         ...this.reglasRequerido.map(rule => rule(this.localItem.fecha_fin)),
-        ...this.reglasRequerido.map(rule => rule(this.localItem.estado)),
         ...this.reglasRequerido.map(rule => rule(this.localItem.renta)),
       ].every(result => result === true);
     }
