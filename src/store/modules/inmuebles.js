@@ -117,14 +117,18 @@ const actions = {
 				try {
 					const response = await apiService.postInmueblePropietario(inmueble_propietario);
 					if (response.status === 201) {
-						alertify.success('Operación realizada correctamente');
+						alertify.success('Item guardado con éxito');
 						dispatch('fetchInmueblesPropietariosVista');
 					} else {
-						alertify.error('Se ha producido un error');
+						alertify.error('Error: ' + response.data.body);
 					}
 				} catch (error) {
 					console.error('Se ha producido un error:', error);
-					alertify.error('Se ha producido un error.');
+					if (error.response && error.response.data && error.response.data.body) {
+						alertify.error('Error: ' + error.response.data.body);
+					} else {
+						alertify.error('Se ha producido un error.');
+					}
 				}
 			},
 			() => {
