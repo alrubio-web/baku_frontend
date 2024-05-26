@@ -85,6 +85,10 @@ export default {
     ...mapGetters({
       todosLosContratos: 'todosLosContratos',
     }),
+    isFormValid() {
+      // Validación de las reglas para cada campo.
+      return this.nombreContratoSeleccionado !== '';
+    }
   }, watch: {
     // Este watcher maneja los cambios en itemProp, que es una propiedad pasada
     // desde el componente padre y se utiliza para inicializar o actualizar los datos del formulario.
@@ -126,14 +130,16 @@ export default {
       };
     },
     eliminarCompleto() {
-      this.eliminarContratoCompleto(this.localItem.id)
-          .then(() => {
-            this.cargarInfo();
-            this.cerrarDialogo();
-            this.$emit('delete:contrato');
-          })
-          .catch(() => {
-          });
+      if(this.isFormValid) {
+        this.eliminarContratoCompleto(this.localItem.id)
+            .then(() => {
+              this.cargarInfo();
+              this.cerrarDialogo();
+              this.$emit('delete:contrato');
+            })
+            .catch(() => {
+            });
+      }
     },
     async cargarInfo() {
       await this.fetchContratos();
