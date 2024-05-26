@@ -89,7 +89,7 @@ export default {
         background: `url(${this.logoPath}) no-repeat right top`,
         //Definimos estilo como fondo para que no condicione la posición de los demás elementos
         backgroundSize: '30vh',
-        marginTop: '60px'
+        marginTop: '80px'
       };
     },
   }
