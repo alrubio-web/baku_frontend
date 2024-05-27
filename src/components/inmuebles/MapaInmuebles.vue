@@ -1,11 +1,11 @@
 <template>
   <v-container>
-        <div class = "titulo">
-          {{ titulo }}
-        </div>
-        <div class="contenedor-mapa">
-          <div ref="map" style="height: 100%"></div>
-        </div>
+    <div className = "titulo">
+      {{ titulo }}
+    </div>
+    <div className = "contenedor-mapa">
+      <div ref = "map" style = "height: 100%"></div>
+    </div>
   </v-container>
 </template>
 
@@ -25,36 +25,17 @@
  */
 
 /* global google */
-import { mapActions } from 'vuex';
-import { formatCurrency } from '../../utils/utilidades';
+import {mapActions} from 'vuex';
+import {formatCurrency} from '../../utils/utilidades';
 
 export default {
-  components: {},
-  props: {
+  components: {}, props: {
     titulo: String, items: Array
-  },
-  data() {
+  }, data() {
     return {
-      search: '',
-      dialog: false,
-      itemSelected: {},
-      localItems: [],
-      inmueblesContratos: [],
-      googleMap: null,
-      rutaContratos: '/contratos',
-      rutaInquilinos: '/inquilinos'
+      inmueblesContratos: [], googleMap: null, rutaContratos: '/contratos', rutaInquilinos: '/inquilinos'
     };
-  },
-  watch: {
-    items: {
-      handler(newItems) {
-        this.localItems = [...newItems];
-      },
-      deep: true,
-      immediate: true,
-    }
-  },
-  mounted() {
+  }, mounted() {
     // Solo cargar el script de Google Maps si aún no se ha cargado
     if (!window.google || !window.google.maps) {
       let script = document.createElement('script');
@@ -71,27 +52,20 @@ export default {
       this.initMap();
       this.cargarDatos();
     }
-  },
-  methods: {
+  }, methods: {
     ...mapActions({
       fetchInmueblesContratos: 'fetchInmueblesContratos',
-    }),
-    formatCurrency(value) {
+    }), formatCurrency(value) {
       return formatCurrency(value);
-    },
-    navegar(ruta) {
+    }, navegar(ruta) {
       this.drawer = false; // Cierra el menú de navegación después de la navegación
       this.$router.push(ruta);
-    },
-    initMap() {
+    }, initMap() {
       this.googleMap = new google.maps.Map(this.$refs.map, {
-        center: { lat: 39.63354967548963, lng: 2.6576633437406234 },
-        zoom: 11,
-        mapId: "d6d721ae6da18895",
+        center: {lat: 39.63354967548963, lng: 2.6576633437406234}, zoom: 11, mapId: "d6d721ae6da18895",
       });
       this.cargarDatos();
-    },
-    async loadMarkers() {
+    }, async loadMarkers() {
       const icons = {
         alquilado: 'http://maps.google.com/mapfiles/ms/icons/blue.png',
         disponible: 'http://maps.google.com/mapfiles/ms/icons/green.png',
@@ -112,10 +86,7 @@ export default {
 
           // Crear un marcador
           const marker = new google.maps.Marker({
-            map: this.googleMap,
-            position: position,
-            icon: icon,
-            title: "Inmueble: " + inmueble.nombre_inmueble
+            map: this.googleMap, position: position, icon: icon, title: "Inmueble: " + inmueble.nombre_inmueble
           });
 
           // Construir el contenido de InfoWindow
@@ -139,9 +110,7 @@ export default {
           // Agregar el evento click al marcador para abrir el InfoWindow
           marker.addListener('click', () => {
             infoWindow.open({
-              map: this.googleMap,
-              anchor: marker,
-              shouldFocus: true
+              map: this.googleMap, anchor: marker, shouldFocus: true
             });
             // manejamos el evento click sobre los enlaces a contratos e inquilinos
             google.maps.event.addListenerOnce(infoWindow, 'domready', () => {
@@ -158,8 +127,7 @@ export default {
           });
         }
       });
-    },
-    async cargarDatos() {
+    }, async cargarDatos() {
       try {
         await this.fetchInmueblesContratos();
         this.inmueblesContratos = this.$store.getters.todosLosInmueblesContratos;
@@ -167,14 +135,12 @@ export default {
       } catch (error) {
         console.error("Error al cargar inmuebles:", error);
       }
-    },
-    cerrarDialogo() {
+    }, cerrarDialogo() {
       this.dialog = false;
     },
   },
 };
 </script>
-
 
 
 <style scoped>
