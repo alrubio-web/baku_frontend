@@ -31,7 +31,7 @@ import { formatCurrency } from '../../utils/utilidades';
 export default {
   components: {},
   props: {
-    titulo: String, cabecera: Array, items: Array
+    titulo: String, items: Array
   },
   data() {
     return {
