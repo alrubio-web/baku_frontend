@@ -67,7 +67,7 @@ export default {
           nombre: 'Inquilinos',
           ruta: '/inquilinos',
           icon: 'mdi-account-details',
-          text: 'Gestiona los contactos.',
+          text: 'Gestiona los inquilinos.',
         },
         {
           nombre: 'Inmuebles',
