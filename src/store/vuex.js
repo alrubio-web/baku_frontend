@@ -124,4 +124,6 @@ const store = createStore({
 	}
 });
 
+//Prueba
+
 export default store;
